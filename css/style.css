@@ -1,0 +1,165 @@
+@font-face {
+  font-family: "Montserrat";
+  src:
+    local("Montserrat"),
+    url("fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Saira";
+  src:
+    local("Saira")
+    url("fonts/Saira-VariableFont_wdth,wght.ttf") format("truetype");
+}
+
+/* Make the font-size scale with the window size */
+html {
+  font-size: clamp(10px, 1.6vw, 16px);
+}
+
+:root {
+  /* 1rem = the font size of the html element */
+  --card-width: 11rem;
+  --card-height: 16rem;
+}
+
+/* Fit page to window, letting the main element expand to push the footer down */
+body {
+  --text: black;
+  --link: indigo;
+  --background-highlight: gold;
+  --background-main: honeydew;
+  --background-header: thistle;
+  --background-card: white;
+  --text-card: black;
+}
+
+body.darkmode {
+  --text: ivory;
+  --link: #decade;
+  --background-main: #1c1f1e;
+  /* --background-header: #7d527d; */
+  --background-header: #4f254f;
+}
+
+a {
+  color: var(--link);
+}
+
+body {
+  display: flex;
+  width: 100vw;
+  margin: 0;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--background-main);
+  color: var(--text);
+
+  main {
+    flex: 1;
+  }
+}
+
+/* Colour and center header and footer */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  background-color: var(--background-header);
+  padding: 0 1.4rem;
+
+  #heading {
+    h1 {
+      display: inline-block;
+      margin: 0.8rem;
+      font-size: 3rem;
+    }
+    img {
+      height: 2.4rem;
+    }
+  }
+}
+
+button#darkmodetoggle {
+  height: 3rem;
+  width: 3rem;
+  border: none;
+  background-color: transparent;
+  background-image: url("light_mode.svg");
+}
+.darkmode button#darkmodetoggle {
+  background-image: url("dark_mode.svg");
+}
+
+footer {
+  text-align: center;  
+  background-color: var(--background-header);
+  h3 {
+    font-weight: 500;
+    font-size: 1.3rem;
+  }
+}
+
+
+/* Position cards into a grid with a variable number of fixed-width columns */
+.container {
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
+  gap: 1.2rem;
+  row-gap: 1.8rem;
+}
+
+.card {
+  width: var(--card-width);
+  height: var(--card-height);
+  text-align: center;
+  margin: 0 auto;
+
+  .side {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+    box-shadow: 0.5rem 0.5rem 1rem rgb(0 0 0 / 16%);
+    background-color: var(--background-card);
+    color: var(--text-card);;
+  }
+}
+
+/* Style front of cards */
+.card .front {
+  img {
+    width: 90%;
+    height: 70%;
+    object-fit: contain;
+    object-position: bottom;
+  }
+
+  h2 {
+    margin-top: 0;
+    padding: 0.6rem;
+    font-size: 1.2rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+/* Cards start out white and change color on hover */
+.card .front {
+  background-color: var(--background-card);
+  transition: background-color 0.8s;
+}
+
+.card .front:hover {
+  background-color: var(--background-highlight);
+}
+
+/* Hide back of cards for now (see flip_extension.css for how to use these) */
+.card .back {
+  display: none;
+}

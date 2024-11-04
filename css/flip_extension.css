@@ -1,0 +1,59 @@
+/* Make cards two sided */
+.card .front {
+  position: absolute;
+  transform: rotateY(0deg);
+  backface-visibility: hidden;
+}
+
+.card .back {
+  position: absolute;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  display: block;
+}
+
+/* Style card back */
+.card .back {
+  .requirements {
+    padding: 0.6rem 1.2rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 3%;
+  }
+
+  /* row 1 of 2: label */
+  .requirements::before {
+    content: attr(label);
+    grid-row: 1;
+    grid-column: 1/4;
+    text-align: left;
+    font-family: Saira, sans-serif;
+    font-size: 1.6rem;
+  }
+
+  /* row 2 of 2: bar graph */
+  .requirements > div {
+    grid-row: 2;
+    height: 2rem;
+  }
+
+  [label="sunlight"] > div {
+    background-color: orange;
+  }
+
+  [label="water"] > div {
+    background-color: dodgerblue;
+  }
+}
+
+/* Cards start out front-up and flip when the user hovers */
+.card {
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition: transform 0.8s;
+}
+
+/* .card:hover */
+.card.flipped {
+  transform: rotateY(180deg);
+}
