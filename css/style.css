@@ -105,7 +105,6 @@ footer {
   }
 }
 
-
 /* Position cards into a grid with a variable number of fixed-width columns */
 .container {
   padding: 2rem;
@@ -116,7 +115,6 @@ footer {
   gap: 1.2rem;
   row-gap: 1.8rem;
 }
-
 .card {
   width: var(--card-width);
   height: var(--card-height);
@@ -152,36 +150,8 @@ footer {
   }
 }
 
-/* Cards start out white and change color on hover */
-.card .front {
-  background-color: var(--background-card);
-  transition: background-color 0.8s;
-}
 
-.card .front:hover {
-  background-color: var(--background-highlight);
-}
-
-/* Hide back of cards for now (see flip_extension.css for how to use these) */
-.card .back {
-  display: none;
-}
-
-/* Make cards two sided */
-.card .front {
-  position: absolute;
-  transform: rotateY(0deg);
-  backface-visibility: hidden;
-}
-
-.card .back {
-  position: absolute;
-  transform: rotateY(180deg);
-  backface-visibility: hidden;
-  display: block;
-}
-
-/* Style card back */
+/* Style back of cards */
 .card .back {
   .requirements {
     padding: 0.6rem 1.2rem 2rem;
@@ -215,6 +185,28 @@ footer {
   }
 }
 
+/* Cards start out white and change color on hover */
+.card .front {
+  background-color: var(--background-card);
+  transition: background-color 0.8s;
+}
+.card .front:hover {
+  background-color: var(--background-highlight);
+}
+
+/* Make cards two sided */
+.card .front {
+  position: absolute;
+  transform: rotateY(0deg);
+  backface-visibility: hidden;
+}
+.card .back {
+  position: absolute;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+
 /* Cards start out front-up and flip when the user hovers */
 .card {
   transform-style: preserve-3d;
@@ -222,7 +214,7 @@ footer {
   transition: transform 0.8s;
 }
 
-/* .card:hover */
+.card:hover,
 .card.flipped {
   transform: rotateY(180deg);
 }
