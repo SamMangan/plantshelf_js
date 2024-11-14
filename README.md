@@ -7,7 +7,7 @@ In this lesson, you will:
 * Practice using JavaScript to respond to events like clicks   
 
 ## Web browser developer tools   
-JavaScript runs in the user's web browser. All major browsers, which means that we can use inbuilt browser tools to debug JavaScript, or even to run JavaScript directly.
+JavaScript runs in the user's web browser which means that we can use inbuilt browser tools to debug JavaScript, or even to run JavaScript directly.
 
 ##### ✅ Chrome DevTools: using the Console as a REPL   
 - [ ] Open index.html in a Chrome* browser   
@@ -88,8 +88,14 @@ toggleDarkMode();
 As well as calling a function directly (like above), we can tell our page to run a function when an event occurs (like a user clicking something):
 ```
 let themeButton = document.querySelector("button#darkmodetoggle");
-themeButton.addEventListener("click", toggleDarkMode); 
+themeButton.addEventListener("click", toggleDarkMode);   
 ```
+
+
+##### ✅ JavaScript
+- [ ] In `week5.js`, complete the remaining exercises.   
+
+
 
 ## Notes   
 \* All major browsers have some version of Chrome's DevTools with a similar set of features, but we will stick with Chrome for simplicity.   
