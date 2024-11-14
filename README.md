@@ -1,6 +1,5 @@
 # 🌿PlantShelf
 PlantShelf is a webpage that shows image/information cards for different plants.
-
 ![](/documentation/plantshelf.png "Plant image cards (left), and the image cards again with one flipped to show the back (right)")
 
 In previous lessons you looked at the structure (HTML) and style (CSS) of PlantShelf. Although modern CSS allows some user interaction (like the flipping cards), JavaScript is a useful tool for making more complicated dynamic pages.
