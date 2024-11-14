@@ -72,6 +72,9 @@ The array `[startFrame, endFrame]` represents how the logo should be rotated at 
 
 
 
+##### ✅ JavaScript: selecting and changing HTML elements    
+- [ ] In `week5.js`, complete Exercises 2 and 3.     
+
 ## JavaScript: event handling   
 JavaScript has many ways of writing functions. One way is using the `function` keyword:
 ```
@@ -92,7 +95,7 @@ themeButton.addEventListener("click", toggleDarkMode);
 ```
 
 
-##### ✅ JavaScript
+##### ✅ JavaScript:  event handling   
 - [ ] In `week5.js`, complete the remaining exercises.   
 
 
