@@ -1,21 +1,5 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Saira:wght@100..900&display=swap'); */
 
-.saira-500 {
-  font-family: "Saira", serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
-
-.montserrat-500 {
-  font-family: "Montserrat", serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
-
 /* Make the font-size scale with the window size */
 html {
   font-size: clamp(10px, 1.6vw, 16px);
@@ -55,9 +39,10 @@ body {
   margin: 0;
   flex-direction: column;
   min-height: 100vh;
-  font-family: montserrat-500, sans-serif;
+  font-family: "Montserrat";
   background-color: var(--background-main);
   color: var(--text);
+  user-select: none;
 
   main {
     flex: 1;
@@ -74,13 +59,18 @@ header {
   padding: 0 1.4rem;
 
   #heading {
+    font-family: "Montserrat";
+    display: flex;
+    gap: 1rem;
+    align-items: center;
     h1 {
-      display: inline-block;
       margin: 0.8rem;
       font-size: 3rem;
+      line-height: 3.6rem;
     }
     img {
-      height: 2.4rem;
+      font-family: "Montserrat";
+      height: 3rem;
     }
   }
 }
@@ -138,6 +128,7 @@ footer {
     height: 70%;
     object-fit: contain;
     object-position: bottom;
+    pointer-events: none;
   }
 
   h2 {
@@ -166,7 +157,7 @@ footer {
     grid-row: 1;
     grid-column: 1/4;
     text-align: left;
-    font-family: saira-500, sans-serif;
+    font-family: "Saira";
     font-size: 1.6rem;
   }
 
@@ -214,7 +205,6 @@ footer {
   transition: transform 0.8s;
 }
 
-.card:hover,
-.card.flipped {
+.card:hover {
   transform: rotateY(180deg);
 }
