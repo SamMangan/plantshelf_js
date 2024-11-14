@@ -8,6 +8,6 @@ console.log("Welcome to Week 5!");
 
 /* Exercise 4: Make the main heading toggle between the original style and the green/Dancing Script style when clicked */
 
-/* Exercise 5: */
+/* Exercise 5: Make the Logo spin around when clicked */
 
-/* Exercise 6: */
+/* Exercise 6: Make all of the plant names in "Dancing Script" font */
