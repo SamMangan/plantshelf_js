@@ -1,5 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Saira:wght@100..900&display=swap'); */
-
 /* Make the font-size scale with the window size */
 html {
   font-size: clamp(10px, 1.6vw, 16px);
