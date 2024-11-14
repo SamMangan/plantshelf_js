@@ -1,3 +1,8 @@
+console.log("Welcome to Week 5!");
+
+/* Exercise 0 */
+// console.log("This week we meet the browser dev tools!");
+
 /* Exercise 1 */
 // let h1 = document.querySelector("h1");
 // h1.style.fontFamily = "Dancing Script";
@@ -32,4 +37,4 @@ let plantHeadings = document.querySelectorAll(".card .front h2");
 function makeFancy(heading) {
   heading.style.fontFamily = "Dancing Script";
 }
-plantHeadings.forEach(makeFancy);
+// plantHeadings.forEach(makeFancy);

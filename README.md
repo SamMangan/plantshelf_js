@@ -1,181 +1,96 @@
 # 🌿PlantShelf  
-PlantShelf is a webpage which shows image/information cards for different plants.
+In previous lessons you looked at the structure (HTML) and style (CSS) of the PlantShelf site. Although modern CSS allows some user interaction (like the flipping cards), JavaScript is a useful tool for making more complicated dynamic pages.
 
-In these 2 lessons, you will:  
-* Explore and modify the structure (HTML) and style (CSS) of PlantShelf.  
-* Learn to use GitHub and git to back up and version-control your code.  
+In this lesson, you will:   
+* Be introduced to using browser develeoper tools to debug JavaScript code  
+* Practice using JavaScript to modify HTML   
+* Practice using JavaScript to respond to events like clicks   
 
-![Plant image cards on the PlantShelf webpage](/documentation/plantshelf.png "Plant image cards")
+## Web browser developer tools   
+JavaScript runs in the user's web browser. All major browsers, which means that we can use inbuilt browser tools to debug JavaScript, or even to run JavaScript directly.
 
-## JS  
+##### ✅ Chrome DevTools: using the Console as a REPL   
+- [ ] Open index.html in a Chrome* browser   
+- [ ] Open the DevTools using `right click` > `Inspect`, and then navigate to the Console Panel    
+![](/documentation/devtools/1-2.png "Opening DevTools Console Panel")   
 
-### Syntax  
-#### variables  
+
+The Console can be used as a JavaScript REPL. A REPL (Read-Evaluate-Print-Loop) is an interactive environment which can run code 1 line at a time and show you the result**.   
+
+- [ ] Try running a few simple JavaScript lines in the Console like the ones below.   
+![](/documentation/devtools/repl.png "Console Panel as a REPL")  
+
+##### ✅ Chrome DevTools: using the Console for logging 
+The Console Panel is also where JavaScript running on your page logs to.    
+
+- [ ] Open `week5.js`. The only line of code logs "Welcome to Week 5".   
+- [ ] Open `index.html` and link `week5.js` just below where the existing JavaScript file is linked.   
+- Refresh your browser and make sure you see the log line in the Console:   
+![](/documentation/devtools/logging.png "Console Panel as a log location")   
+- [ ] Back in `week5.js`, complete **Exercise 1**.
+
+
+## JavaScript: selecting and changing HTML elements    
+JavaScript represents HTML using `Element` objects. You can get `Element`s representing parts of your page using `querySelector` with a CSS selector as the parameter:   
 ```
-// Declare num and set it to 42
-let num = 42;
-
-// Change value in num to 9
-num = 9;
+let footer = document.querySelector("footer");
+let logo = document.querySelector("#heading > img");
 ```
 
-#### functions  
+The `querySelector` method can be called on either `document` (which represents the whole page), or an individual `Element` like below:
+```
+footer.querySelector("a");
+```
+
+If you want to get all matching `Element`s, you can use `querySelectorAll`:
+```
+let footer = document.querySelector("footer");
+let links = footer.querySelectorAll("a");
+console.log(links[0]); // Log the first link
+```
+
+Some useful methods of `Element` objects are `style`, `textContent`, and `animate`:
+
+```
+let footer = document.querySelector("footer");   
+footer.style.backgroundColor = "orange";
+
+let plantName = document.querySelector(".card h2");
+plantName.textContent = "Green Leaves"
+```
+Note that CSS attributes are converted to *camelCase* when used with `Element.style`, so `background-color` becomes `backgroundColor`.   
+   
+
+`Animate` is a powerful method, but one relatively simple usage is shown below:
+```
+let logo = document.querySelector("#heading img");
+let startFrame = { transform: "rotate(0deg)" };
+let endFrame = { transform: "rotate(-90deg)" };
+logo.animate([startFrame, endFrame], 1000);
+```
+The array `[startFrame, endFrame]` represents how the logo should be rotated at the start and end of the animation. The 2nd argument says that the animation should take 1000ms.
+
+
+
+## JavaScript: event handling   
+JavaScript has many ways of writing functions. One way is using the `function` keyword:
 ```
 // Declare function
 function toggleDarkMode() {
   let body = document.querySelector("body");
   body.classList.toggle("darkmode");
 }
+
 // Call function
 toggleDarkMode();
 ```
 
-#### forEach  
+As well as calling a function directly (like above), we can tell our page to run a function when an event occurs (like a user clicking something):
 ```
-[1, 2, 3, 4]
-```
-
-### Objects of interest  
-
-#### Document, Element  
-querySelector  
-querySelectorAll  
-
-#### Element  
-style  
-content  
-animate  
-addEventListener  
-
-#### Nesting
-CSS rules can be nested to reduce repetition. For example, this:
-```
-header h1 {
-  ...
-}
-header nav {
-  ...
-}
+let themeButton = document.querySelector("button#darkmodetoggle");
+themeButton.addEventListener("click", toggleDarkMode); 
 ```
 
-...can be rewritten as this:
-```
-header {
-  h1 {
-    ...
-  }
-
-  nav {
-    ...
-  }
-}
-```
-
-<br/>
-
-#### Variables  
-Variables (a.k.a. *custom properties*) can be used in CSS to store and use values:
-```
-nav {
-  --accent-color: gold;
-  color: var(--accent-color);
-}
-```
-
-A variable must be declared inside a rule (i.e. inside a `<selector> { ... }` block). Variables can be accessed inside the rule where they're created (like above), and they "cascade" just like normal properties. For example, `nav button` can also access `--accent-color`:
-
-```
-nav button {
-  border: 2px solid var(--accent-color);
-}
-```
-
-A common trick to make a variable accessible *everywhere* is to declare it inside the "fake" `:root` selector.
-
-##### ✅ Activity   
-- [ ] Change the colours assigned to the variables inside the `:root` selector in `style.css`
-
-<br/>
-
-#### Relative units and responsive typography
-As well as the page colours, the `:root` selector declares variables for the width and height of the cards:
-```
-:root {
-  ...
-  --card-width: 11rem;
-  --card-height: 16rem;
-}
-```
-Unlike pixels (`px`), which sets an exact size, a `rem` is a *relative* unit. Specifically, `11rem` means `11 x <whatever the root element's font-size is>`, a.k.a. `11 x <the html element's font-size>`.  
-
-If you look at the rest of the style.css, you'll see that exact sizes aren't used at all. This means that if we want to scale everything on the page, all we have to do is change one value: the html element's `font-size`.
-
-So what is the html element's `font-size`? It depends how big the window is:
-```
-html {
-  font-size: clamp(10px, 1.6vw, 16px);
-}
-```
-
-The `clamp` function says "make `font-size` `1.6 x <the window width>`" — but no less than `10px` and no more than `16px`. The result is that everything on the page scales based on the window size, so the website also looks sensible on a phone screen:  
-![Screenshot of PlantShelf on a phonescreen](/documentation/phone.png "Screenshot of PlantShelf on a phonescreen")   
-
-##### ✅ Activity   
-- [ ] Modify the arguments of the `clamp` function in style.css to change minimum and maximum scale of the page. Resize your browser window to test it out.
-
-<br/>
-
-#### flex and grid layouts
-You may have used the `display` property before to make elements either stack on top of each other (`display: block`) or sit next to each other (`display: inline`).
-
-Two other common `display` values are `flex` and `grid`, which are recent inventions intended to make laying out pages easier. There is a lot to say about both, but a very brief summary is:  
-
-* if an element has `display: flex` set, its elements will grow and shrink based on the available space. For example, these rules mean that the `header`, `main`, and `footer` elements are stacked in a column fills the entire screen height. The `main` element expands to make sure this happens:
-    ```
-    body {
-      display: flex;
-      ...
-      flex-direction: column;
-      min-height: 100vh;
-      ...
-
-      main {
-        flex: 1;
-      }
-    }
-    ```
-
-* if an element has `display: grid` set, its elements will be arranged in rows and colums. For example, these rules mean that the cards will be arranged in a grid with `1rem` of space between rows and columns, and with the number of columns depending on how much room there is:
-    ```
-    .container {
-      ....
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
-      gap: 1rem;
-    }
-    ```
-
- flex-direction (column vs row)   
-
-##### ✅ Activity   
-- [ ] Change `flex-direction: column;` to `flex-direction: row;`, and explain what happens as a result.  
-- [ ] Double the size of the grid `gap`.
-
-<br/><br/>
-
-## [optional] Card flipping extension
-* In  index.html, uncomment all the `<div class="back side">` sections.  
-* Also in index.html, link the additional `flip_extension.css` stylesheet.  
-* What happens now when you hover over a card?  
-* Investigate the TODOs in `flip_extension.css` and try to make the cards flip.  
-
-## [optional] Further information and useful tools
-#### Visual Studio Code │ Live Server extension
-* Search and install the Live Server extension (View > Open View... Extensions).  
-* Inside your index.html, right click and select "Open with Live Server". A new browser tab should open with your page, and will automatically reload whenever you save a change to the html or css (so you no longer have to refresh!)
-
-#### Free games for learning flex and grid layouts
-If you're interested in learning more about `flex` and `grid` layouts, [Flex Box Froggy](https://flexboxfroggy.com/) and [CSS Grid Garden](https://cssgridgarden.com/) are well-known free games for doing so.
-
-#### Web Browser │ Developer Tools
-* (TBA: if time allows) Using (Chrome?) devtools to debug html/css
+## Notes   
+\* All major browsers have some version of Chrome's DevTools with a similar set of features, but we will stick with Chrome for simplicity.   
+\** You might already be famililar with the Python REPL, IDLE.   
