@@ -5,15 +5,15 @@
   <meta charset="UTF-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="icon" type="image/x-icon" href="images\favicon.png" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.png" />
   <title>Plant Shelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Montserrat:wght@100..900&family=Saira:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="manifest" href="manifest.json" />
 </head>
 
 <body>
-  <script>0</script>
   <header>
     <div id="heading">
       <img src="images/logo.png" alt="Plant Shelf logo" /><h1>Plant Shelf</h1>
@@ -160,12 +160,16 @@
 
   <footer>
     <h3>Images by <a href="https://www.freepik.com/" target="_blank">Freepik</a></h3>
-    <h3>Fork this on <a href="https://github.com/S-Mangan/plantshelf" target="_blank">
-        GitHub</a></h3>
+    <h3>Fork this on <a href="https://github.com/SamMangan/plantshelf_js" target="_blank">GitHub</a></h3>
   </footer>
 
-  <script src="js/main.js"></script>
-  <script src="js/week5.js"></script>
+  <script src="js/main.js" defer></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      console.log("Registering Service Worker");
+      navigator.serviceWorker.register("serviceworker.js");
+    }
+  </script>
 </body>
 
 </html>

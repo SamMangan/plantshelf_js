@@ -1,14 +1,31 @@
-// Unlike Python, variables can be declared without being assigned a value
-let themeButton;
+let body = document.querySelector("body");
+let themeButton = document.querySelector("button#darkmodetoggle");
+let cards = document.querySelectorAll(".card");
 
-// Select darkmode button, and assign resulting Element object to themeButton
-themeButton = document.querySelector("button#darkmodetoggle");
-
-// Declare a function called toggleDarkMode with no parameters (arguments)
 function toggleDarkMode() {
-  let body = document.querySelector("body"); // Declare AND assign body at same time
-  body.classList.toggle("darkmode"); // Add or remove the 'darkmode' class
+  body.classList.toggle("darkmode");
+}
+themeButton.addEventListener("click", toggleDarkMode);
+
+const flip = card => card.classList.add("flipped");
+const unflip = card => card.classList.remove("flipped");
+const isFlipped = card => card.classList.contains("flipped");
+
+const unflipAll = except => {
+  cards.forEach(card => {
+    if (card !== except)
+      unflip(card)
+  });
 }
 
-// When button is clicked, call toggleDarkMode function
-themeButton.addEventListener("click", toggleDarkMode); 
+cards.forEach(card => {
+  function toggleFlip() {
+    if (isFlipped(card)) {
+      unflip(card);
+    } else {
+      unflipAll(except = card);
+      flip(card);
+    }
+  }
+  card.addEventListener("click", toggleFlip);
+})

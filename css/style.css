@@ -78,10 +78,10 @@ button#darkmodetoggle {
   width: 3rem;
   border: none;
   background-color: transparent;
-  background-image: url("light_mode.svg");
+  background-image: url("../images/light_mode.svg");
 }
 .darkmode button#darkmodetoggle {
-  background-image: url("dark_mode.svg");
+  background-image: url("../images/dark_mode.svg");
 }
 
 footer {
@@ -203,6 +203,6 @@ footer {
   transition: transform 0.8s;
 }
 
-.card:hover {
+.card.flipped {
   transform: rotateY(180deg);
 }
